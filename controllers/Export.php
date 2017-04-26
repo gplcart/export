@@ -194,7 +194,7 @@ class Export extends BackendController
         if (!empty($file)) {
             $file = gplcart_string_decode($file);
             if (is_file($file)) {
-                $this->response->download($file);
+                $this->download($file);
             }
         }
     }
