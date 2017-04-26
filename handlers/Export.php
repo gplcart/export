@@ -74,7 +74,7 @@ class Export
         $this->job = &$job;
 
         $options = $this->job['data']['options'];
-        $options['limit'] = array($this->job['context']['offset'], $this->job['data']['limit']);
+        $options['limit'] = array($this->job['done'], $this->job['data']['limit']);
 
         $items = (array) $this->product->getList($options);
 
@@ -87,8 +87,7 @@ class Export
             $this->job['status'] = false;
             $this->job['done'] = $this->job['total'];
         } else {
-            $this->job['done'] = count($items);
-            $this->job['context']['offset'] += $this->job['done'];
+            $this->job['done'] += count($items);
         }
     }
 
