@@ -49,9 +49,6 @@ class Export extends BackendController
     public function doExport()
     {
         $this->downloadCsvExport();
-
-        $this->setJob();
-
         $settings = $this->config->module('export');
 
         if (empty($settings['columns'])) {
@@ -60,7 +57,7 @@ class Export extends BackendController
 
         $this->setData('settings', $settings);
         $this->setData('columns', $settings['header']);
-        $this->setData('stores', $this->store->getNames());
+        $this->setData('stores', $this->store->getList());
 
         $this->submitExport();
 

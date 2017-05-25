@@ -16,8 +16,8 @@
         </label>
         <div class="col-md-4">
           <select class="form-control" name="settings[options][store_id]">
-            <?php foreach ($stores as $store_id => $store_name) { ?>
-            <option value="<?php echo $store_id; ?>"<?php echo $settings['options']['store_id'] == $store_id ? ' selected' : ''; ?>><?php echo $this->escape($store_name); ?></option>
+            <?php foreach ($stores as $store_id => $store) { ?>
+            <option value="<?php echo $store_id; ?>"<?php echo $settings['options']['store_id'] == $store_id ? ' selected' : ''; ?>><?php echo $this->escape($store['name']); ?></option>
             <?php } ?>
           </select>
         </div>
@@ -51,6 +51,4 @@
     </div>
   </div>
 </form>
-<?php if (!empty($job)) { ?>
-<?php echo $job; ?>
-<?php } ?>
+<?php echo $_job; ?>
