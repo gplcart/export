@@ -17,7 +17,7 @@
         <div class="col-md-4">
           <select class="form-control" name="settings[options][store_id]">
             <?php foreach ($stores as $store_id => $store) { ?>
-            <option value="<?php echo $store_id; ?>"<?php echo $settings['options']['store_id'] == $store_id ? ' selected' : ''; ?>><?php echo $this->escape($store['name']); ?></option>
+            <option value="<?php echo $store_id; ?>"<?php echo $settings['options']['store_id'] == $store_id ? ' selected' : ''; ?>><?php echo $this->e($store['name']); ?></option>
             <?php } ?>
           </select>
         </div>
