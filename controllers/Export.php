@@ -126,7 +126,7 @@ class Export extends BackendController
     {
         $directory = GC_PRIVATE_DOWNLOAD_DIR . '/export';
 
-        if (!file_exists($directory) && !mkdir($directory, 0644, true)) {
+        if (!file_exists($directory) && !mkdir($directory, 0775, true)) {
             $this->setError('file', $this->text('Unable to create @name', array('@name' => $directory)));
             return false;
         }
@@ -186,7 +186,7 @@ class Export extends BackendController
      */
     protected function downloadCsvExport()
     {
-        $file = $this->getQuery('download');
+        $file = $this->getQuery('download', '', 'string');
 
         if (!empty($file)) {
             $file = gplcart_string_decode($file);
