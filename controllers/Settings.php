@@ -58,10 +58,12 @@ class Settings extends BackendController
         $header = $this->getData('settings.header');
 
         if (is_array($header)) {
+            
             $string = '';
             foreach ($header as $key => $value) {
                 $string .= "$key $value\n";
             }
+            
             $this->setData('settings.header', trim($string));
         }
     }
@@ -71,8 +73,7 @@ class Settings extends BackendController
      */
     protected function setTitleEditSettings()
     {
-        $vars = array('%name' => $this->text('Exporter'));
-        $title = $this->text('Edit %name settings', $vars);
+        $title = $this->text('Edit %name settings', array('%name' => $this->text('Exporter')));
         $this->setTitle($title);
     }
 
@@ -115,12 +116,13 @@ class Settings extends BackendController
     {
         $this->setSubmitted('settings');
 
+        $this->validateElement('limit', 'numeric');
         $this->validateElement('limit', 'required');
         $this->validateElement('multiple', 'required');
         $this->validateElement('delimiter', 'required');
-        $this->validateElement('limit', 'numeric');
 
         $this->validateHeaderSettings();
+        
         return !$this->hasErrors();
     }
 
