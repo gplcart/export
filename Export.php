@@ -31,7 +31,6 @@ class Export extends Module
      */
     public function hookRouteList(array &$routes)
     {
-        // Module settings page
         $routes['admin/module/settings/export'] = array(
             'access' => 'module_edit',
             'handlers' => array(
@@ -39,7 +38,6 @@ class Export extends Module
             )
         );
 
-        // Export page
         $routes['admin/tool/export'] = array(
             'menu' => array('admin' => 'Export'),
             'access' => 'export_product',
