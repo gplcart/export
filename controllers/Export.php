@@ -186,13 +186,10 @@ class Export extends BackendController
      */
     protected function downloadCsvExport()
     {
-        $file = $this->getQuery('download', '');
+        $file = $this->getQuery('download');
 
         if (!empty($file)) {
-            $file = gplcart_string_decode($file);
-            if (is_file($file)) {
-                $this->download($file);
-            }
+            $this->download(gplcart_string_decode($file));
         }
     }
 
