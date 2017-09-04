@@ -57,7 +57,7 @@ class Export
      * @param StoreModel $store
      */
     public function __construct(ProductModel $product, PriceModel $price,
-            FileModel $file, StoreModel $store)
+                                FileModel $file, StoreModel $store)
     {
         $this->file = $file;
         $this->price = $price;
@@ -76,7 +76,7 @@ class Export
         $options = $this->job['data']['options'];
         $options['limit'] = array($this->job['done'], $this->job['data']['limit']);
 
-        $items = (array) $this->product->getList($options);
+        $items = (array)$this->product->getList($options);
 
         foreach ($items as $product) {
             $data = $this->prepare($product);
@@ -126,6 +126,7 @@ class Export
      * Prepares images
      * @param array $data
      * @param array $product
+     * @return null|array
      */
     protected function prepareImages(array &$data, array $product)
     {
@@ -152,6 +153,7 @@ class Export
         }
 
         $data['images'] = implode($this->job['data']['multiple'], $paths);
+        return $data;
     }
 
     /**
@@ -169,7 +171,7 @@ class Export
             'id_value' => $product['product_id']
         );
 
-        return (array) $this->file->getList($options);
+        return (array)$this->file->getList($options);
     }
 
 }
