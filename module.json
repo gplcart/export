@@ -1,7 +1,7 @@
 {
     "name": "Exporter",
     "version": "1.0.0-dev",
-    "description": "Allows to export products to a CSV file",
+    "description": "Allows to export products to CSV file",
     "author": "Iurii Makukh ",
     "core": "1.x",
     "license": "GPL-3.0+",

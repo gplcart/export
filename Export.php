@@ -39,7 +39,7 @@ class Export extends Module
         );
 
         $routes['admin/tool/export'] = array(
-            'menu' => array('admin' => 'Export'),
+            'menu' => array('admin' => /* @text */'Export'),
             'access' => 'export_product',
             'handlers' => array(
                 'controller' => array('gplcart\\modules\\export\\controllers\\Export', 'doExport')
@@ -53,7 +53,7 @@ class Export extends Module
     public function hookCron()
     {
         // Automatically delete created files older than 1 day
-        $lifespan = 24*60*60;
+        $lifespan = 24 * 60 * 60;
         $directory = GC_PRIVATE_DOWNLOAD_DIR . '/export';
         if (is_dir($directory)) {
             gplcart_file_delete($directory, array('csv'), $lifespan);
@@ -79,7 +79,7 @@ class Export extends Module
      */
     public function hookUserRolePermissions(array &$permissions)
     {
-        $permissions['export_product'] = 'Exporter: export products';
+        $permissions['export_product'] = /* @text */'Exporter: export products';
     }
 
 }
