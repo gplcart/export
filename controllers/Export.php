@@ -124,7 +124,7 @@ class Export extends BackendController
      */
     protected function validateFileExport()
     {
-        $directory = GC_PRIVATE_DOWNLOAD_DIR . '/export';
+        $directory = gplcart_file_private_module('export');
 
         if (!file_exists($directory) && !mkdir($directory, 0775, true)) {
             $this->setError('file', $this->text('Unable to create @name', array('@name' => $directory)));
