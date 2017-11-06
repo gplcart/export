@@ -49,7 +49,7 @@ class Export extends BackendController
     public function doExport()
     {
         $this->downloadCsvExport();
-        $settings = $this->config->module('export');
+        $settings = $this->config->getFromModule('export');
 
         if (empty($settings['columns'])) {
             $settings['columns'] = array_keys($settings['header']);
@@ -150,7 +150,7 @@ class Export extends BackendController
     protected function setJobExport()
     {
         $submitted = $this->getSubmitted();
-        $settings = $this->config->module('export');
+        $settings = $this->config->getFromModule('export');
 
         $settings['columns'] = $submitted['columns'];
         $settings['options'] = $submitted['options'];
