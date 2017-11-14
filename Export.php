@@ -53,7 +53,6 @@ class Export extends Module
      */
     public function hookCron()
     {
-        // Automatically delete created files older than 1 day
         $lifespan = 24 * 60 * 60;
         $directory = gplcart_file_private_module('export');
         gplcart_file_empty($directory, array('csv'), $lifespan);
