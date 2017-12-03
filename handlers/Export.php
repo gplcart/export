@@ -167,8 +167,8 @@ class Export
             'order' => 'asc',
             'sort' => 'weight',
             'file_type' => 'image',
-            'id_key' => 'product_id',
-            'id_value' => $product['product_id']
+            'entity' => 'product',
+            'entity_id' => $product['product_id']
         );
 
         return (array)$this->file->getList($options);
