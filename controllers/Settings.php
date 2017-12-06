@@ -9,7 +9,6 @@
 
 namespace gplcart\modules\export\controllers;
 
-use gplcart\core\models\Module as ModuleModel;
 use gplcart\core\controllers\backend\Controller as BackendController;
 
 /**
@@ -19,19 +18,11 @@ class Settings extends BackendController
 {
 
     /**
-     * Module model instance
-     * @var \gplcart\core\models\Module $module
+     * Constructor
      */
-    protected $module;
-
-    /**
-     * @param ModuleModel $module
-     */
-    public function __construct(ModuleModel $module)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->module = $module;
     }
 
     /**
@@ -42,7 +33,7 @@ class Settings extends BackendController
         $this->setTitleEditSettings();
         $this->setBreadcrumbEditSettings();
 
-        $this->setData('settings', $this->config->getFromModule('export'));
+        $this->setData('settings', $this->module->getSettings('export'));
 
         $this->submitSettings();
 
@@ -58,12 +49,12 @@ class Settings extends BackendController
         $header = $this->getData('settings.header');
 
         if (is_array($header)) {
-            
+
             $string = '';
             foreach ($header as $key => $value) {
                 $string .= "$key $value\n";
             }
-            
+
             $this->setData('settings.header', trim($string));
         }
     }
@@ -122,7 +113,7 @@ class Settings extends BackendController
         $this->validateElement('delimiter', 'required');
 
         $this->validateHeaderSettings();
-        
+
         return !$this->hasErrors();
     }
 

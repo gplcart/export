@@ -9,22 +9,11 @@
 
 namespace gplcart\modules\export;
 
-use gplcart\core\Module,
-    gplcart\core\Config;
-
 /**
  * Main class for Exporter module
  */
-class Export extends Module
+class Export
 {
-
-    /**
-     * @param Config $config
-     */
-    public function __construct(Config $config)
-    {
-        parent::__construct($config);
-    }
 
     /**
      * Implements hook "route.list"
@@ -49,16 +38,6 @@ class Export extends Module
     }
 
     /**
-     * Implements hook "cron"
-     */
-    public function hookCron()
-    {
-        $lifespan = 24 * 60 * 60;
-        $directory = gplcart_file_private_module('export');
-        gplcart_file_empty($directory, array('csv'), $lifespan);
-    }
-
-    /**
      * Implements hook "job.handlers"
      * @param array $handlers
      */
@@ -78,6 +57,14 @@ class Export extends Module
     public function hookUserRolePermissions(array &$permissions)
     {
         $permissions['export_product'] = /* @text */'Exporter: export products';
+    }
+
+    /**
+     * Implements hook "cron"
+     */
+    public function hookCron()
+    {
+        gplcart_file_empty(gplcart_file_private_module('export'), array('csv'), 24 * 60 * 60);
     }
 
 }

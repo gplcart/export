@@ -9,8 +9,7 @@
 
 namespace gplcart\modules\export\controllers;
 
-use gplcart\core\models\Module as ModuleModel,
-    gplcart\core\models\Product as ProductModel;
+use gplcart\core\models\Product as ProductModel;
 use gplcart\core\controllers\backend\Controller as BackendController;
 
 /**
@@ -20,26 +19,18 @@ class Export extends BackendController
 {
 
     /**
-     * Module model class instance
-     * @var \gplcart\core\models\Module $module
-     */
-    protected $module;
-
-    /**
      * Product model class instance
      * @var \gplcart\core\models\Product $product
      */
     protected $product;
 
     /**
-     * @param ModuleModel $module
      * @param ProductModel $product
      */
-    public function __construct(ModuleModel $module, ProductModel $product)
+    public function __construct(ProductModel $product)
     {
         parent::__construct();
 
-        $this->module = $module;
         $this->product = $product;
     }
 
@@ -49,7 +40,7 @@ class Export extends BackendController
     public function doExport()
     {
         $this->downloadCsvExport();
-        $settings = $this->config->getFromModule('export');
+        $settings = $this->module->getSettings('export');
 
         if (empty($settings['columns'])) {
             $settings['columns'] = array_keys($settings['header']);
@@ -150,7 +141,7 @@ class Export extends BackendController
     protected function setJobExport()
     {
         $submitted = $this->getSubmitted();
-        $settings = $this->config->getFromModule('export');
+        $settings = $this->module->getSettings('export');
 
         $settings['columns'] = $submitted['columns'];
         $settings['options'] = $submitted['options'];
