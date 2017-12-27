@@ -12,7 +12,7 @@ namespace gplcart\modules\export;
 /**
  * Main class for Exporter module
  */
-class Export
+class Module
 {
 
     /**
