@@ -13,7 +13,7 @@ use gplcart\core\models\Product as ProductModel;
 use gplcart\core\controllers\backend\Controller as BackendController;
 
 /**
- * Handles incoming requests and outputs data related to Exporter module
+ * Handles incoming requests and outputs data related to Expor module
  */
 class Export extends BackendController
 {
@@ -35,11 +35,12 @@ class Export extends BackendController
     }
 
     /**
-     * Route callback to displays the export page
+     * Route callback to display the export page
      */
     public function doExport()
     {
         $this->downloadCsvExport();
+
         $settings = $this->module->getSettings('export');
 
         if (empty($settings['columns'])) {
@@ -106,6 +107,7 @@ class Export extends BackendController
         $this->setSubmitted('settings');
         $this->validateElement('columns', 'required');
         $this->validateFileExport();
+
         return !$this->hasErrors();
     }
 

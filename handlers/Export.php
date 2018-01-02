@@ -56,8 +56,8 @@ class Export
      * @param FileModel $file
      * @param StoreModel $store
      */
-    public function __construct(ProductModel $product, PriceModel $price,
-                                FileModel $file, StoreModel $store)
+    public function __construct(ProductModel $product, PriceModel $price, FileModel $file,
+            StoreModel $store)
     {
         $this->file = $file;
         $this->price = $price;
@@ -76,7 +76,7 @@ class Export
         $options = $this->job['data']['options'];
         $options['limit'] = array($this->job['done'], $this->job['data']['limit']);
 
-        $items = (array)$this->product->getList($options);
+        $items = (array) $this->product->getList($options);
 
         foreach ($items as $product) {
             $data = $this->prepare($product);
@@ -171,7 +171,7 @@ class Export
             'entity_id' => $product['product_id']
         );
 
-        return (array)$this->file->getList($options);
+        return (array) $this->file->getList($options);
     }
 
 }
