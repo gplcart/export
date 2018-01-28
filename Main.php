@@ -60,9 +60,9 @@ class Main
     }
 
     /**
-     * Implements hook "cron"
+     * Implements hook "cron.run.after"
      */
-    public function hookCron()
+    public function hookCronRunAfter()
     {
         gplcart_file_empty(gplcart_file_private_module('export'), array('csv'), 24 * 60 * 60);
     }

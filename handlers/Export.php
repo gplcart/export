@@ -145,7 +145,7 @@ class Export
         $paths = array();
         foreach ($images as $image) {
             if (isset($store['domain'])) {
-                $path = $this->store->url($store);
+                $path = $this->store->getUrl($store);
                 $paths[] = "$path/files/{$image['path']}";
             } else {
                 $paths[] = $image['path'];
