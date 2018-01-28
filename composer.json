@@ -1,12 +1,18 @@
 {
-    "name": "gplcart/export",
-    "type": "gplcart-module",
-    "description": "Allows to export products to a CSV file",
-    "keywords": ["gplcart", "ecommerce", "shopping cart", "gplcart module", "php"],
-    "license": "GPL-3.0+",
-    "require": {
-        "gplcart/composer-module-installer": "*"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "gplcart/export",
+  "type": "gplcart-module",
+  "description": "Allows to export products to a CSV file",
+  "keywords": [
+    "gplcart",
+    "ecommerce",
+    "shopping cart",
+    "gplcart module",
+    "php"
+  ],
+  "license": "GPL-3.0-or-later",
+  "require": {
+    "gplcart/composer-module-installer": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
