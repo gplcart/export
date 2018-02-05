@@ -29,7 +29,9 @@ class Main
         );
 
         $routes['admin/tool/export'] = array(
-            'menu' => array('admin' => /* @text */'Export'),
+            'menu' => array(
+                'admin' => 'Export' // @text
+            ),
             'access' => 'export_product',
             'handlers' => array(
                 'controller' => array('gplcart\\modules\\export\\controllers\\Export', 'doExport')
@@ -56,7 +58,7 @@ class Main
      */
     public function hookUserRolePermissions(array &$permissions)
     {
-        $permissions['export_product'] = /* @text */'Exporter: export products';
+        $permissions['export_product'] = 'Exporter: export products'; // @text
     }
 
     /**
