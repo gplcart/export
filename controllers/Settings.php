@@ -1,29 +1,21 @@
 <?php
 
 /**
- * @package Exporter 
- * @author Iurii Makukh  
- * @copyright Copyright (c) 2017, Iurii Makukh  
- * @license https://www.gnu.org/licenses/gpl-3.0.en.html GPL-3.0+ 
+ * @package Exporter
+ * @author Iurii Makukh
+ * @copyright Copyright (c) 2017, Iurii Makukh
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GPL-3.0+
  */
 
 namespace gplcart\modules\export\controllers;
 
-use gplcart\core\controllers\backend\Controller as BackendController;
+use gplcart\core\controllers\backend\Controller;
 
 /**
  * Handles incoming requests and outputs data related to Exporter module
  */
-class Settings extends BackendController
+class Settings extends Controller
 {
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Route page callback to display the module settings page
@@ -32,11 +24,9 @@ class Settings extends BackendController
     {
         $this->setTitleEditSettings();
         $this->setBreadcrumbEditSettings();
-
         $this->setData('settings', $this->module->getSettings('export'));
 
         $this->submitSettings();
-
         $this->setDataEditSettings();
         $this->outputEditSettings();
     }
@@ -52,7 +42,7 @@ class Settings extends BackendController
 
             $string = '';
             foreach ($header as $key => $value) {
-                $string .= "$key $value\n";
+                $string .= "$key $value" . PHP_EOL;
             }
 
             $this->setData('settings.header', trim($string));
@@ -160,6 +150,7 @@ class Settings extends BackendController
     protected function updateSettings(array $settings)
     {
         $this->controlAccess('module_edit');
+
         $this->module->setSettings('export', $settings);
         $this->redirect('', $this->text('Settings have been updated'), 'success');
     }

@@ -9,10 +9,10 @@
 
 namespace gplcart\modules\export\handlers;
 
-use gplcart\core\models\Product as ProductModel,
-    gplcart\core\models\Price as PriceModel,
-    gplcart\core\models\File as FileModel,
-    gplcart\core\models\Store as StoreModel;
+use gplcart\core\models\File;
+use gplcart\core\models\Price;
+use gplcart\core\models\Product;
+use gplcart\core\models\Store;
 
 /**
  * Handler for Exporter module
@@ -51,13 +51,13 @@ class Export
     protected $job = array();
 
     /**
-     * @param ProductModel $product
-     * @param PriceModel $price
-     * @param FileModel $file
-     * @param StoreModel $store
+     * Export constructor.
+     * @param Product $product
+     * @param Price $price
+     * @param File $file
+     * @param Store $store
      */
-    public function __construct(ProductModel $product, PriceModel $price, FileModel $file,
-            StoreModel $store)
+    public function __construct(Product $product, Price $price, File $file, Store $store)
     {
         $this->file = $file;
         $this->price = $price;
@@ -143,6 +143,7 @@ class Export
         $store = $this->store->get($product['store_id']);
 
         $paths = array();
+
         foreach ($images as $image) {
             if (isset($store['domain'])) {
                 $path = $this->store->getUrl($store);

@@ -9,13 +9,13 @@
 
 namespace gplcart\modules\export\controllers;
 
-use gplcart\core\models\Product as ProductModel;
-use gplcart\core\controllers\backend\Controller as BackendController;
+use gplcart\core\controllers\backend\Controller;
+use gplcart\core\models\Product;
 
 /**
  * Handles incoming requests and outputs data related to Expor module
  */
-class Export extends BackendController
+class Export extends Controller
 {
 
     /**
@@ -25,9 +25,10 @@ class Export extends BackendController
     protected $product;
 
     /**
-     * @param ProductModel $product
+     * Export constructor.
+     * @param Product $product
      */
-    public function __construct(ProductModel $product)
+    public function __construct(Product $product)
     {
         parent::__construct();
 
@@ -52,7 +53,6 @@ class Export extends BackendController
         $this->setData('stores', $this->store->getList());
 
         $this->submitExport();
-
         $this->setTitleDoExport();
         $this->setBreadcrumbDoExport();
 
@@ -124,7 +124,6 @@ class Export extends BackendController
             return false;
         }
 
-        // Create an empty CSV file to be written later
         $date = date('d-m-Y--H-i');
         $file = gplcart_file_unique("$directory/$date.csv");
 
@@ -148,13 +147,10 @@ class Export extends BackendController
         $settings['columns'] = $submitted['columns'];
         $settings['options'] = $submitted['options'];
 
-        // Memorize user choice
         $this->module->setSettings('export', $settings);
 
-        // Set up export job
         $data = array_merge($settings, $submitted);
 
-        // Prepend CSV header according to chosen columns
         $data['header'] = array_intersect_key($data['header'], array_flip($data['columns']));
         gplcart_file_csv($data['file'], $data['header'], $data['delimiter']);
 
